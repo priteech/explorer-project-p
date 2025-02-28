@@ -1,0 +1,9 @@
+<h1>Todo list Iteams</h1>
+<ul class="todo">
+  @for (todo of todoS(); track $index) {
+  <li class="todo_item">
+    <input id="todo-{{todo.id}}" type="checkbox" [value]="todo.copleted">
+    <label for="todo-{{todo.id}}"> {{todo.title}}</label>
+  </li>
+  }
+</ul>

@@ -1,0 +1,33 @@
+header{
+    display: flex;
+    padding-inline: 16px;
+    padding-block: 8px;
+    overflow: none;
+    background-color: rgb(80, 48, 48);
+    color: white;
+    align-items: center;
+    justify-content:space-between ;
+
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;   
+        >span {
+            cursor: pointer;
+            &:hover{
+                color: rgb(45, 18, 166);
+            }
+        }
+    }
+
+    ul {
+        list-style-type: none;
+    li {
+        cursor: pointer;
+        &:hover{
+            color: rgb(45, 18, 166);
+        }
+    }
+
+    }
+}
