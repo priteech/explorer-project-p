@@ -10,9 +10,14 @@ exports.TodosComponent = void 0;
 var core_1 = require("@angular/core");
 var todos_s_service_1 = require("../services/todos-s.service");
 var rxjs_1 = require("rxjs");
+var highlighter_directive_1 = require("../directives/highlighter.directive");
+var common_1 = require("@angular/common");
+var forms_1 = require("@angular/forms");
+var filters_pipe_1 = require("../pipes/filters.pipe");
 var TodosComponent = /** @class */ (function () {
     function TodosComponent(todoItem) {
         this.todoItem = todoItem;
+        this.serchTerm = core_1.signal('');
         this.todoS = core_1.signal([]);
         this.todoIteamS = core_1.inject(todos_s_service_1.TodosSService);
     }
@@ -28,7 +33,7 @@ var TodosComponent = /** @class */ (function () {
     TodosComponent = __decorate([
         core_1.Component({
             selector: 'app-todos',
-            imports: [],
+            imports: [highlighter_directive_1.HighlighterDirective, common_1.UpperCasePipe, forms_1.FormsModule, filters_pipe_1.FiltersPipe],
             templateUrl: './todos.component.html',
             styleUrl: './todos.component.scss'
         })

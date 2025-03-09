@@ -1,9 +1,22 @@
 <h1>Todo list Iteams</h1>
+@if (!todoS().length) {
+<p>loading</p>
+}
+<form>
+  <label>filter the user...</label>
+<input name="searchTerm" [ngModel]="searchTerm()" (ngModelChange)="updateSearch($event)" placeholder="Search by name">
+</form>
 <ul class="todo">
-  @for (todo of todoS(); track $index) {
+  @for (todo of (todoS() | filters : searchTerm()).slice((page - 1) * pageSize, page * pageSize); track $index) {
   <li class="todo_item">
-    <input id="todo-{{todo.id}}" type="checkbox" [value]="todo.copleted">
-    <label for="todo-{{todo.id}}"> {{todo.title}}</label>
+    <input (click)="todo.completed=!todo.completed" id="todo-{{todo.id}}" type="checkbox" [checked]="todo.completed">
+    <label appHighlighter [isComplete]='todo.completed' for="todo-{{todo.id}}"> {{todo.title | uppercase}}</label>
   </li>
   }
 </ul>
+
+<div class="pagination">
+  <button [disabled]="page === 1" (click)="page = page - 1">Previous</button>
+  <span>Page {{page}} of {{Math.ceil(todoS().length / pageSize)}}</span>
+  <button [disabled]="page === Math.ceil(todoS().length / pageSize)" (click)="page = page + 1">Next</button>
+</div>
